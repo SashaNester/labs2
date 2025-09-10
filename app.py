@@ -40,3 +40,18 @@ def image():
     </body>
 </html>
 '''
+
+count = 0
+
+@app.route('/counter')
+def counter():
+    global count
+    count += 1
+    return '''
+<!doctype html>
+<html>
+    <body>
+        Сколько раз заходили сюда: ''' + str(count) + '''
+    </body>
+</html>
+'''

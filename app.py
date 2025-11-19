@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, redirect
+from flask import Flask, url_for, request, redirect, make_response
 import datetime
 app = Flask(__name__)
 
@@ -152,3 +152,31 @@ def created():
 </html>
 ''', 201
 
+@app.route("/lab1/error400")
+def error400():
+    return make_response("400 Bad Request — Некорректный запрос", 400)
+
+
+@app.route("/lab1/error401")
+def error401():
+    return make_response("401 Unauthorized — Не авторизован", 401)
+
+
+@app.route("/lab1/error402")
+def error402():
+    return make_response("402 Payment Required — Требуется оплата", 402)
+
+
+@app.route("/lab1/error403")
+def error403():
+    return make_response("403 Forbidden — Доступ запрещён", 403)
+
+
+@app.route("/lab1/error405")
+def error405():
+    return make_response("405 Method Not Allowed — Метод не разрешён", 405)
+
+
+@app.route("/lab1/error418")
+def error418():
+    return make_response("418 I'm a teapot — Я — чайник", 418)

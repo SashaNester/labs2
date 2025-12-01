@@ -28,6 +28,8 @@ def index():
     </body>
 </html>"""
 
+
+
 @app.errorhandler(404)
 def not_found(err):
     error_image = url_for("static", filename="404.png")
@@ -277,3 +279,97 @@ def error405():
 @app.route("/error418")
 def error418():
     return make_response("418 I'm a teapot — Я — чайник", 418)
+
+
+@app.route("/error500")
+def error500():
+    result = 10 / 0
+    return "Эта строка не будет показана"
+
+
+@app.errorhandler(500)
+def internal_server_error(err):
+    return f'''
+<!doctype html>
+<html>
+    <head>
+        <title>500 - Ошибка сервера</title>
+        <style>
+            body {{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                color: white;
+            }}
+            .error-container {{
+                text-align: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                max-width: 600px;
+                width: 90%;
+            }}
+            .error-code {{
+                font-size: 100px;
+                font-weight: bold;
+                margin: 0;
+                color: #ffeaa7;
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            }}
+            .error-title {{
+                font-size: 32px;
+                margin: 20px 0;
+                color: #ffeaa7;
+            }}
+            .error-message {{
+                font-size: 18px;
+                margin: 30px 0;
+                line-height: 1.8;
+                background: rgba(255, 255, 255, 0.15);
+                padding: 20px;
+                border-radius: 15px;
+            }}
+            .home-button {{
+                display: inline-block;
+                padding: 12px 30px;
+                background: #ffeaa7;
+                color: #ff6b6b;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                margin-top: 20px;
+                border: none;
+                cursor: pointer;
+            }}
+            .home-button:hover {{
+                background: #fdcb6e;
+                box-shadow: 0 5px 15px rgba(253, 203, 110, 0.4);
+                text-decoration: none;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            
+            <h1 class="error-code">500</h1>
+            <h2 class="error-title">Внутренняя ошибка сервера</h2>
+            
+            <div class="error-message">
+                <p><strong>Упс! Что-то пошло не так на нашей стороне.</strong></p>
+                <p>Сервер столкнулся с непредвиденной ошибкой при обработке вашего запроса.</p>
+                <p>Наши разработчики уже уведомлены и работают над решением проблемы.</p>
+            </div>
+            
+            <a href="/" class="home-button">Вернуться на главную</a>
+        </div>
+    </body>
+</html>
+''', 500

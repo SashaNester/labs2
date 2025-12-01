@@ -30,7 +30,104 @@ def index():
 
 @app.errorhandler(404)
 def not_found(err):
-    return "нет такой страницы", 404
+    error_image = url_for("static", filename="404.png")
+    return f'''
+<!doctype html>
+<html>
+    <head>
+        <title>404 - Страница не найдена</title>
+        <style>
+            body {{
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                color: white;
+            }}
+            .error-container {{
+                text-align: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                max-width: 500px;
+            }}
+            .error-image {{
+                width: 200px;
+                height: 200px;
+                margin-bottom: 20px;
+                border-radius: 50%;
+                object-fit: cover;
+            }}
+            .error-code {{
+                font-size: 72px;
+                font-weight: bold;
+                margin: 0;
+                color: #ff6b6b;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }}
+            .error-title {{
+                font-size: 24px;
+                margin: 10px 0;
+                color: #ffeaa7;
+            }}
+            .error-message {{
+                font-size: 16px;
+                margin: 20px 0;
+                line-height: 1.6;
+            }}
+            .home-button {{
+                display: inline-block;
+                padding: 12px 30px;
+                background: #ff6b6b;
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                margin-top: 20px;
+            }}
+            .home-button:hover {{
+                background: #ff5252;
+                box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            }}
+            .search-tip {{
+                background: rgba(255, 255, 255, 0.2);
+                padding: 15px;
+                border-radius: 10px;
+                margin: 20px 0;
+                font-size: 14px;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <img src="{error_image}" alt="Ошибка 404" class="error-image">
+            <h2 class="error-title">Ой! Страница потерялась в цифровом пространстве</h2>
+            
+            <div class="error-message">
+                <p>Кажется, эта страница отправилась в незапланированный отпуск 🏖️</p>
+                <p>Возможно, она путешествует по серверам или просто решила спрятаться от нас!</p>
+            </div>
+            
+            <div class="search-tip">
+                <strong>Что можно сделать:</strong><br>
+                - Проверьте адрес на опечатки<br>
+                - Вернитесь на главную страницу<br>
+                - Используйте меню навигации<br>
+                - Просто наслаждайтесь этой красивой страницей ошибки
+            </div>
+            
+            <a href="/" class="home-button">Вернуться на главную</a>
+        </div>
+    </body>
+</html>
+''', 404
 
 @app.route("/lab1")
 def lab1():
@@ -152,31 +249,31 @@ def created():
 </html>
 ''', 201
 
-@app.route("/lab1/error400")
+@app.route("/error400")
 def error400():
     return make_response("400 Bad Request — Некорректный запрос", 400)
 
 
-@app.route("/lab1/error401")
+@app.route("/error401")
 def error401():
     return make_response("401 Unauthorized — Не авторизован", 401)
 
 
-@app.route("/lab1/error402")
+@app.route("/error402")
 def error402():
     return make_response("402 Payment Required — Требуется оплата", 402)
 
 
-@app.route("/lab1/error403")
+@app.route("/error403")
 def error403():
     return make_response("403 Forbidden — Доступ запрещён", 403)
 
 
-@app.route("/lab1/error405")
+@app.route("/error405")
 def error405():
     return make_response("405 Method Not Allowed — Метод не разрешён", 405)
 
 
-@app.route("/lab1/error418")
+@app.route("/error418")
 def error418():
     return make_response("418 I'm a teapot — Я — чайник", 418)

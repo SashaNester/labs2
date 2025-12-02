@@ -176,11 +176,11 @@ def web():
         <html>
             <body>
                 <h1>web-сервер на flask</h1>
-                <a href="lab1/author">author</a>
+                <a href="/lab1/author">author</a>
             </body>
         </html>""", 200, {
             "X-Server": "sample",
-            "Content-Type": "text/plain; charset=utf-8"
+            "Content-Type": "text/html; charset=utf-8"
             }
 
 @app.route("/lab1/author")
@@ -195,7 +195,7 @@ def author():
                 <p>Студент: """ + name + """</p>
                 <p>Группа: """ + group + """</p>
                 <p>Факультет: """ + faculty + """</p>
-                <a href="/web">web</a>
+                <a href="/lab1/web">web</a>
             </body>
         </html>"""
 

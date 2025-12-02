@@ -185,7 +185,8 @@ def author():
 def image():
     path = url_for("static", filename="oak.jpg")
     css_path = url_for("static", filename="lab1.css")
-    return '''
+    
+    html_content = '''
 <!doctype html>
 <html>
     <body class=a>
@@ -195,6 +196,15 @@ def image():
     </body>
 </html>
 '''
+    
+    response = make_response(html_content)
+    
+    response.headers['Content-Language'] = 'ru'
+    
+    response.headers['X-Image-Type'] = 'Nature'
+    response.headers['X-Author'] = 'Nesterova_Alexandra'
+    
+    return response
 
 count = 0
 

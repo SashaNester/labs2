@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 2, Выбранный цветок{% endblock %}
+
+{# основной контент: #}
+{% block main %}
+    <h1>Выбранный цветок</h1>
+    
+    <div class="flower-info">
+        <p>Название: <b>{{ flower_name }}</b></p>
+        <p>Номер в списке: <b>{{ flower_number }}</b></p>
+        <p>Всего цветов: <b>{{ total_flowers }}</b></p>
+    </div>
+    
+    <div class="links">
+        <a href="{{ url_for('all_flowers') }}">Назад к списку</a>
+    </div>
+{% endblock %}

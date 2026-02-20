@@ -18,6 +18,7 @@ def index():
         <nav>
             <ul>
                 <li><a href="/lab1">Первая лабораторная</a></li>
+                <li><a href="/lab2/">Вторая лабораторная</a></li>
             </ul>
         </nav>
         
@@ -402,6 +403,11 @@ def internal_server_error(err):
 </html>
 ''', 500
 
+
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2/lab2.html')
+
 @app.route('/lab2/a')
 def a():
     return 'без слэша'
@@ -422,7 +428,7 @@ def flowers(flower_id):
         abort(404)
     else:
         return render_template(
-            'flower_simple.html',
+            'lab2/flower_simple.html',
             flower_id=flower_id,
             flower_name=flower_list[flower_id],
             flower_number=flower_id + 1,
@@ -488,16 +494,12 @@ def example():
         {'name': 'мандарины', 'price': 95},
         {'name': 'манго', 'price': 321}
     ]
-    return render_template('example.html', name=name, number=number, group=group, course=course, fruits=fruits)
-
-@app.route('/lab2/')
-def lab2():
-    return render_template('lab2.html')
+    return render_template('lab2/example.html', name=name, number=number, group=group, course=course, fruits=fruits)
 
 @app.route('/lab2/filters')
 def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
-    return render_template('filter.html', phrase = phrase)
+    return render_template('lab2/filter.html', phrase = phrase)
 
 
 @app.route('/lab2/calc/<int:a>/<int:b>')
@@ -552,7 +554,7 @@ books = [
 
 @app.route('/lab2/books_list')
 def books_list():
-    return render_template('books.html', books=books)
+    return render_template('lab2/books.html', books=books)
 
 
 berries = [
@@ -580,4 +582,4 @@ berries = [
 
 @app.route('/lab2/berries_list')
 def berries_list():
-    return render_template('berries.html', berries=berries)
+    return render_template('lab2/berries.html', berries=berries)

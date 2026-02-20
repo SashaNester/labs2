@@ -553,3 +553,31 @@ books = [
 @app.route('/lab2/books_list')
 def books_list():
     return render_template('books.html', books=books)
+
+
+berries = [
+    {'name': 'Клубника', 'description': 'Сладкая и ароматная ягода', 'image': 'клубника.jpg', 'season': 'Июнь-Июль'},
+    {'name': 'Малина', 'description': 'Нежная ягода с уникальным вкусом', 'image': 'малина.jpg', 'season': 'Июль-Август'},
+    {'name': 'Черника', 'description': 'Полезна для зрения', 'image': 'черника.jpg', 'season': 'Июль-Сентябрь'},
+    {'name': 'Клюква', 'description': 'Кислая ягода для морсов', 'image': 'клюква.jpg', 'season': 'Сентябрь-Октябрь'},
+    {'name': 'Ежевика', 'description': 'Чёрная сладкая ягода', 'image': 'ежевика.jpg', 'season': 'Август-Сентябрь'},
+    {'name': 'Брусника', 'description': 'Северная ягода', 'image': 'брусника.jpg', 'season': 'Август-Октябрь'},
+    {'name': 'Смородина красная', 'description': 'Красная ягода', 'image': 'крассмор.jpg', 'season': 'Июль-Август'},
+    {'name': 'Смородина чёрная', 'description': 'Ароматная чёрная ягода', 'image': 'черсмор.jpg', 'season': 'Июль-Август'},
+    {'name': 'Крыжовник', 'description': 'Прозрачная ягода', 'image': 'крыжовник.jpg', 'season': 'Июль-Август'},
+    {'name': 'Земляника', 'description': 'Лесная ягода', 'image': 'земляника.jpg', 'season': 'Июнь-Июль'},
+    {'name': 'Голубика', 'description': 'Крупная синяя ягода', 'image': 'голубика.jpg', 'season': 'Июль-Август'},
+    {'name': 'Морошка', 'description': 'Янтарная северная ягода', 'image': 'морошка.jpg', 'season': 'Июль-Август'},
+    {'name': 'Калина', 'description': 'Красная горькая ягода', 'image': 'калина.jpg', 'season': 'Сентябрь-Октябрь'},
+    {'name': 'Рябина', 'description': 'Оранжево-красные ягоды', 'image': 'рябина.jpg', 'season': 'Сентябрь-Ноябрь'},
+    {'name': 'Шиповник', 'description': 'Дикая роза', 'image': 'шиповник.jpg', 'season': 'Август-Октябрь'},
+    {'name': 'Облепиха', 'description': 'Оранжевая ягода', 'image': 'облепиха.jpg', 'season': 'Август-Сентябрь'},
+    {'name': 'Виноград', 'description': 'Сладкие ягоды гроздьями', 'image': 'виноград.jpg', 'season': 'Август-Октябрь'},
+    {'name': 'Барбарис', 'description': 'Красные кислые ягоды', 'image': 'барбарис.jpg', 'season': 'Сентябрь-Октябрь'},
+    {'name': 'Арбуз', 'description': 'Самая большая ягода', 'image': 'арбуз.jpg', 'season': 'Июль-Август'},
+    {'name': 'Жимолость', 'description': 'Синие ягоды', 'image': 'жимолость.jpg', 'season': 'Июнь'}
+]
+
+@app.route('/lab2/berries_list')
+def berries_list():
+    return render_template('berries.html', berries=berries)

@@ -41,7 +41,7 @@ def index():
 
 @app.errorhandler(404)
 def not_found(err):
-    error_image = url_for("static", filename="404.png")
+    error_image = url_for("static", filename="lab1/404.png")
     return f'''
 <!doctype html>
 <html>

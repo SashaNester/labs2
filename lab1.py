@@ -157,3 +157,42 @@ def created():
     </body>
 </html>
 ''', 201
+
+
+@lab1.route("/error400")
+def error400():
+    return make_response("400 Bad Request — Некорректный запрос", 400)
+
+
+@lab1.route("/error401")
+def error401():
+    return make_response("401 Unauthorized — Не авторизован", 401)
+
+
+@lab1.route("/error402")
+def error402():
+    return make_response("402 Payment Required — Требуется оплата", 402)
+
+
+@lab1.route("/error403")
+def error403():
+    return make_response("403 Forbidden — Доступ запрещён", 403)
+
+
+@lab1.route("/error405")
+def error405():
+    return make_response("405 Method Not Allowed — Метод не разрешён", 405)
+
+
+@lab1.route("/error418")
+def error418():
+    return make_response("418 I'm a teapot — Я — чайник", 418)
+
+
+@lab1.route("/error500")
+def error500():
+    try:
+        result = 10 / 0
+        return "Эта строка не будет показана"
+    except:
+        abort(500)

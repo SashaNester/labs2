@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block lab %}Холодильник{% endblock %}
+
+{% block main %}
+    <h1>Результат установки температуры</h1>
+    
+    <div style="background-color: #e0f7fa; padding: 20px; border-radius: 10px; width: 400px; text-align: center;">
+        {% if error %}
+            <div style="color: red; font-size: 18px; margin: 20px 0; padding: 10px; background-color: #ffebee; border-radius: 5px;">
+                <strong>{{ error }}</strong>
+            </div>
+        {% else %}
+            <div style="font-size: 24px; margin: 20px 0; padding: 10px; background-color: white; border-radius: 5px;">
+                <strong>{{ result }}</strong>
+            </div>
+            <div style="font-size: 40px; margin: 20px 0;">
+                {% for i in range(snowflakes) %}
+                    <span>❄️</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/lab4/fridge-form" style="background-color: #2f5caa; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Назад к форме</a>
+    </div>
+     
+    <br>
+    <div>
+        <a href="/lab4/">В меню лабораторной 4</a>
+    </div>
+{% endblock %}

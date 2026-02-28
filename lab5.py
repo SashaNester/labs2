@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, request, session, redirect, current_app
 import psycopg2
 from psycopg2.extras import RealDictCursor

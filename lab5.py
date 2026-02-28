@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, session, redirect, current_app
-import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -52,14 +51,22 @@ def register():
 
     conn, cur = db_connect()
 
-    cur.execute("SELECT login FROM users WHERE login=%s;", (login, ))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("SELECT login FROM users WHERE login = %s;", (login,))
+    else:
+        cur.execute("SELECT login FROM users WHERE login=?;", (login,))
     
     if cur.fetchone():
         db_close(conn, cur)
         return render_template('lab5/register.html', error="Такой пользователь уже существует")
 
     password_hash = generate_password_hash(password)
-    cur.execute("INSERT INTO users (login, password) VALUES (%s, %s);", (login, password_hash))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("INSERT INTO users (login, password, real_name) VALUES (%s, %s, %s);",
+                (login, password_hash, real_name))
+    else:
+        cur.execute("INSERT INTO users (login, password, real_name) VALUES (?, ?, ?);",
+                (login, password_hash, real_name))
     
     db_close(conn, cur)
     return render_template('lab5/success.html', login=login)
@@ -78,7 +85,11 @@ def login():
 
     conn, cur = db_connect()
 
-    cur.execute("SELECT * FROM users WHERE login=%s;", (login, ))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("SELECT * FROM users WHERE login = %s;", (login,))
+    else:
+        cur.execute("SELECT * FROM users WHERE login = ?;", (login,))
+
     user = cur.fetchone()  
 
     if not user:
@@ -108,11 +119,18 @@ def create():
 
     conn, cur = db_connect()
 
-    cur.execute("SELECT * FROM users WHERE login=%s;", (login, ))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("SELECT * FROM users WHERE login=%s;", (login, ))
+    else:
+        cur.execute("SELECT * FROM users WHERE login=?;", (login, ))
     login_id = cur.fetchone()["id"]
 
-    cur.execute("INSERT INTO articles(login_id, title, article_text) \
-                VALUES (%s, %s, %s);", (login_id, title, article_text))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("INSERT INTO articles(login_id, title, article_text, is_favorite, is_public) VALUES (%s, %s, %s, %s, %s);",
+        (login_id, title, article_text, is_favorite, is_public))
+    else:
+        cur.execute("INSERT INTO articles(login_id, title, article_text, is_favorite, is_public) VALUES (?, ?, ?, ?, ?);",
+        (login_id, title, article_text, is_favorite, is_public))
 
     db_close(conn,cur)
     return redirect('/lab5/')
@@ -126,10 +144,16 @@ def list():
 
     conn, cur = db_connect()
 
-    cur.execute("SELECT id FROM users WHERE login=%s;", (login, ))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("SELECT id FROM users WHERE login=%s;", (login, ))
+    else:
+        cur.execute("SELECT id FROM users WHERE login=?;", (login, ))
     login_id = cur.fetchone()["id"]
 
-    cur.execute("SELECT * FROM articles WHERE login_id==%s;", (login_id, ))
+    if current_app.config['DB_TYPE'] =='postgres':
+        cur.execute("SELECT * FROM articles WHERE login_id=%s ORDER BY is_favorite DESC, id;", (login_id,))
+    else:
+        cur.execute("SELECT * FROM articles WHERE login_id=? ORDER BY is_favorite DESC, id;", (login_id,))
     articles = cur.fetchall()
 
     db_close(conn, cur)

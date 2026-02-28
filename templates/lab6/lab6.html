@@ -32,6 +32,11 @@ function getOfficeList() {
             bookingButton.onclick = function() {booking(office.number)};
             li.appendChild(bookingButton);
 
+            const cancelButton = document.createElement('button');
+            cancelButton.innerText = 'освободить';
+            cancelButton.onclick = function() {cancellation(office.number)};
+            li.appendChild(cancelButton);
+
             ul.appendChild(li);
         }
     });
@@ -77,6 +82,44 @@ function booking(officeNumber) {
 document.addEventListener('DOMContentLoaded', function() {
     getOfficeList();
 });
+
+function cancellation(officeNumber) {
+    const url = '/lab6/json-rpc-api/';
+    const json = {
+        'jsonrpc': '2.0',
+        'method': 'cancellation',
+        'params': officeNumber,
+        'id': Math.round(Math.random()*1000)
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(json)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            switch(data.error.code) {
+                case 1:
+                    alert('Вы не авторизованы, пожалуйста, авторизуйтесь');
+                    break;
+                case 3:
+                    alert('Офис не арендуется');
+                    break;
+                case 4:
+                    alert('Это не ваш офис');
+                    break;
+
+            }
+        }
+        else {
+            document.getElementById('office-list').innerHTML = '';
+            getOfficeList();
+        }
+    });
+}
+
 </script>
 {% endblock %}
 

@@ -22,10 +22,18 @@ function getOfficeList() {
     .then(function(data) {
         const office_list = data.result;
         const ul = document.getElementById('office-list');
+        ul.innerHTML = '';
+
+        let totalCost = 0;
+
         for(let i = 0; i < office_list.length; i++) {
             const office = office_list[i];
             const li = document.createElement('li');
-            li.innerText = `${office.number}: ${office.tenant || 'свободен'}`;
+            li.innerText = `${office.number}: ${office.tenant || 'свободен'} | стоимость: ${office.price} руб.`;
+
+            if (office.tenant === "{{ session.get('login') }}") {
+                totalCost += office.price;
+            }
 
             const bookingButton = document.createElement('button');
             bookingButton.innerText = 'зарезервировать';
@@ -39,6 +47,9 @@ function getOfficeList() {
 
             ul.appendChild(li);
         }
+
+        document.getElementById('total-cost').innerText =
+            "Общая стоимость вашей аренды: " + totalCost + " руб.";
     });
 }
 
@@ -79,10 +90,6 @@ function booking(officeNumber) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    getOfficeList();
-});
-
 function cancellation(officeNumber) {
     const url = '/lab6/json-rpc-api/';
     const json = {
@@ -120,10 +127,15 @@ function cancellation(officeNumber) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    getOfficeList();
+});
 </script>
 {% endblock %}
 
 {% block main %}
     <h1>Список кабинетов</h1>
     <ul id="office-list"></ul>    
+
+    <p id="total-cost" style="margin-top:20px; font-weight:bold;"></p>
 {% endblock %}

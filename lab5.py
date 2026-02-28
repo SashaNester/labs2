@@ -63,11 +63,11 @@ def register():
 
     password_hash = generate_password_hash(password)
     if current_app.config['DB_TYPE'] =='postgres':
-        cur.execute("INSERT INTO users (login, password, real_name) VALUES (%s, %s, %s);",
-                (login, password_hash, real_name))
+        cur.execute("INSERT INTO users (login, password) VALUES (%s, %s);",
+                (login, password_hash))
     else:
-        cur.execute("INSERT INTO users (login, password, real_name) VALUES (?, ?, ?);",
-                (login, password_hash, real_name))
+        cur.execute("INSERT INTO users (login, password) VALUES (?, ?);",
+                (login, password_hash))
     
     db_close(conn, cur)
     return render_template('lab5/success.html', login=login)

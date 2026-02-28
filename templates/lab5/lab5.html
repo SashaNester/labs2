@@ -15,4 +15,7 @@
         </div>
     </div>
     <a href="/">На главную</a>
+    {% if session.get('login') %}
+        <p>Вы вошли как {{ session.get('login') }} | <a href="{{ url_for('lab5.logout') }}">Выйти</a></p>
+    {% endif %}
 {% endblock %}

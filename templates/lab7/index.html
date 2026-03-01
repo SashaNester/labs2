@@ -5,20 +5,69 @@
 {% block script %}
 <script src="{{ url_for('static', filename='lab7/main.js') }}"></script>
 <style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+}
+
+th {
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid #888;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
 .modal {
     display: none;
     z-index: 100;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     background: white;
-    width: 400px;
+    width: 420px;
     left: 50%;
-    top: 220px;
-    margin-left: -200px;
+    top: 180px;
+    margin-left: -210px;
     position: absolute;
     padding: 20px;
+    border-radius: 6px;
 }
+
+.modal input,
+.modal textarea {
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.modal textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+
 .error-message {
     color: red;
+    font-size: 14px;
 }
 </style>
 {% endblock %}

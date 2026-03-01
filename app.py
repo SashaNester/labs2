@@ -17,7 +17,7 @@ from lab8 import lab8
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'секретно-секретный секрет')
-app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'sqlite')
+app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgresql')
 
 if app.config['DB_TYPE'] == 'postgres':
     db_name = 'aleksandra_nesterova_orm'

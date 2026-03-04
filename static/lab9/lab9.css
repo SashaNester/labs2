@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(to bottom, #0b1d3a, #1b3c6d);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.title {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.info {
+    margin: 20px;
+    font-size: 18px;
+}
+
+.field {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+}
+
+.gift {
+    position: absolute;
+    width: 90px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gift:hover {
+    transform: scale(1.1);
+}
+
+.gift img {
+    width: 100%;
+}
+
+.gift.opened {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.modal-content img {
+    width: 200px;
+    margin: 15px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: #c62828;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

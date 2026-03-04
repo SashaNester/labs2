@@ -158,3 +158,27 @@ footer {
 .article-actions {
     margin-top: 10px;
 }
+
+
+.ny-title {
+    text-align: center;
+    color: #d62828;
+}
+
+.ny-area {
+    position: relative;
+    height: 600px;
+    background: linear-gradient(to bottom, #0b3d91, #1d3557);
+    overflow: hidden;
+}
+
+.gift-box {
+    position: absolute;
+    font-size: 40px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gift-box:hover {
+    transform: scale(1.2);
+}

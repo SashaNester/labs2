@@ -1,0 +1,16 @@
+{% extends "rgzbase.html" %}
+{% block title %}Админ: Пользователи{% endblock %}
+{% block main %}
+<h1>Пользователи</h1>
+
+<ul class="rgz-initiatives-list">
+{% for u in users %}
+    <li>{{ u.login }} 
+        {% if u.login != 'admin' %}
+            | <a href="{{ url_for('rgz.admin_delete_user', user_id=u.id) }}" class="rgz-vote-btn">Удалить</a>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('rgz.index') }}">Назад</a>
+{% endblock %}

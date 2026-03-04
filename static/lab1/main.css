@@ -182,3 +182,172 @@ footer {
 .gift-box:hover {
     transform: scale(1.2);
 }
+
+
+
+
+
+
+
+
+.rgz-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.rgz-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.rgz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.rgz-header .rgz-student-info {
+    font-size: 14px;
+    color: #555;
+}
+
+.rgz-header nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.rgz-header nav a:hover {
+    color: #007BFF;
+}
+
+.rgz-menu {
+    margin: 15px 0;
+}
+
+.rgz-menu a {
+    text-decoration: none;
+    color: #007BFF;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.rgz-menu a:hover {
+    text-decoration: underline;
+}
+
+.rgz-initiatives-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rgz-initiatives-list li {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.rgz-initiatives-list li strong {
+    font-size: 16px;
+}
+
+.rgz-initiatives-list a.rgz-vote-btn {
+    margin-right: 5px;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.rgz-initiatives-list a.rgz-vote-btn:hover {
+    text-decoration: underline;
+}
+
+.rgz-form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.rgz-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.rgz-form-container input[type="text"],
+.rgz-form-container input[type="password"],
+.rgz-form-container textarea {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.rgz-form-container button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.rgz-form-container button:hover {
+    background-color: #0056b3;
+}
+
+.rgz-flash {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.rgz-flash li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.rgz-flash li.rgz-error {
+    background-color: #ffe5e5;
+    color: #c00;
+}
+
+.rgz-flash li.rgz-success {
+    background-color: #e5ffe5;
+    color: #070;
+}
+
+.rgz-pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.rgz-pagination a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+}
+
+.rgz-pagination a:hover {
+    background-color: #007BFF;
+    color: #fff;
+}

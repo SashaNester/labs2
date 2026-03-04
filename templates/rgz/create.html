@@ -1,0 +1,18 @@
+{% extends "rgzbase.html" %}
+{% block title %}Создать инициативу{% endblock %}
+{% block main %}
+<h1>Создать инициативу</h1>
+
+<div class="rgz-form-container">
+    <form method="post">
+        <label>Название:
+            <input type="text" name="title">
+        </label>
+        <label>Описание:
+            <textarea name="description" rows="4"></textarea>
+        </label>
+        <button type="submit">Создать</button>
+    </form>
+    <a href="{{ url_for('rgz.index') }}">Назад</a>
+</div>
+{% endblock %}

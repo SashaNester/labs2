@@ -1,0 +1,18 @@
+{% extends "rgzbase.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block main %}
+<h1>Регистрация</h1>
+
+<div class="rgz-form-container">
+    <form method="post">
+        <label>Логин:
+            <input type="text" name="login">
+        </label>
+        <label>Пароль:
+            <input type="password" name="password">
+        </label>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <a href="{{ url_for('rgz.login') }}">Войти</a>
+</div>
+{% endblock %}

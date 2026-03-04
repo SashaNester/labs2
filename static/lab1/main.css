@@ -51,3 +51,110 @@ footer {
     position: fixed;
     right: 20px;
 }
+
+
+
+.lab8-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2c6ecb;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+}
+
+.container {
+    width: 700px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.link {
+    color: #2c6ecb;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: #ffe5e5;
+    color: #b00020;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.textarea-field {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.btn {
+    background-color: #2c6ecb;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #1f55a5;
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+}
+
+.article-item {
+    background: #fafafa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.article-title {
+    font-size: 18px;
+    color: #333;
+}
+
+.article-text {
+    margin: 10px 0;
+    color: #555;
+}
+
+.article-actions {
+    margin-top: 10px;
+}

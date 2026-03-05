@@ -30,13 +30,13 @@
         </div>
 
         {% if current_user.is_authenticated %}
-        <div class="rgz-i<a href="{{ url_for('rgz.vote', initiative_id=item.id, action='up') }}"
+        <div class="rgz-initiative-actions">
+
+            <a href="{{ url_for('rgz.vote', initiative_id=item.id, action='up') }}"
                class="rgz-vote-btn">👍</a>
 
             <a href="{{ url_for('rgz.vote', initiative_id=item.id, action='down') }}"
-               class="rgz-vote-btn">👎</a>nitiative-actions">
-
-            
+               class="rgz-vote-btn">👎</a>
 
             {% if current_user.id == item.user_id or current_user.login == 'admin' %}
                 <a href="{{ url_for('rgz.delete', initiative_id=item.id) }}"

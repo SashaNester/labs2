@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from db import db
 from db.models import users
 from flask_login import LoginManager
+from db.models import initiative_users
 
 from lab1 import lab1
 from lab2 import lab2
@@ -27,6 +28,14 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_users(login_id):
     return users.query.get(int(login_id))
+
+rgz_login_manager = LoginManager()
+rgz_login_manager.login_view = "rgz.login"
+rgz_login_manager.init_app(app)
+
+@rgz_login_manager.user_loader
+def load_rgz_user(user_id):
+    return initiative_users.query.get(int(user_id))
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-key')
 app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')

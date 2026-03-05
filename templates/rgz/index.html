@@ -1,44 +1,73 @@
 {% extends "rgzbase.html" %}
 {% block title %}Инициативы{% endblock %}
-{% block main %}
-<h1>Инициативы</h1>
 
-<div class="rgz-menu">
-{% if is_auth %}
-    <a href="{{ url_for('rgz.create') }}">Создать инициативу</a> |
-    <a href="{{ url_for('rgz.delete_account') }}">Удалить аккаунт</a> |
-    <a href="{{ url_for('rgz.logout') }}">Выйти ({{ login }})</a>
-{% else %}
-    <a href="{{ url_for('rgz.login') }}">Войти</a> |
-    <a href="{{ url_for('rgz.register') }}">Регистрация</a>
+{% block main %}
+<h1 class="rgz-page-title">Инициативы</h1>
+
+{% if current_user.is_authenticated %}
+    <div class="rgz-top-actions">
+        <a href="/rgz/create" class="rgz-btn">
+            Создать инициативу
+        </a>
+    </div>
 {% endif %}
-</div>
 
 <ul class="rgz-initiatives-list">
 {% for item in initiatives %}
-    <li>
-        <strong>{{ item.title }}</strong> ({{ item.votes }} голосов)<br>
-        {{ item.description }}<br>
-        Создано: {{ item.created_at.strftime('%d.%m.%Y') }}<br>
-        {% if is_auth %}
-            <a href="{{ url_for('rgz.vote', initiative_id=item.id, action='up') }}" class="rgz-vote-btn">👍</a>
-            <a href="{{ url_for('rgz.vote', initiative_id=item.id, action='down') }}" class="rgz-vote-btn">👎</a>
-            {% if current_user.id == item.user_id %}
-                | <a href="{{ url_for('rgz.delete', initiative_id=item.id) }}" class="rgz-vote-btn">Удалить</a>
+    <li class="rgz-initiative-item">
+
+        <div class="rgz-initiative-title">
+            {{ item.title }}
+        </div>
+
+        <div class="rgz-initiative-text">
+            {{ item.description }}
+        </div>
+
+        <div class="rgz-initiative-meta">
+            Создано: {{ item.created_at.strftime('%d.%m.%Y') }}
+            | Голосов: {{ item.votes }}
+        </div>
+
+        {% if current_user.is_authenticated %}
+        <div class="rgz-i<a href="{{ url_for('rgz.vote', initiative_id=item.id, action='up') }}"
+               class="rgz-vote-btn">👍</a>
+
+            <a href="{{ url_for('rgz.vote', initiative_id=item.id, action='down') }}"
+               class="rgz-vote-btn">👎</a>nitiative-actions">
+
+            
+
+            {% if current_user.id == item.user_id or current_user.login == 'admin' %}
+                <a href="{{ url_for('rgz.delete', initiative_id=item.id) }}"
+                   class="rgz-delete-btn">
+                    Удалить
+                </a>
             {% endif %}
+
+        </div>
         {% endif %}
+
     </li>
 {% endfor %}
 </ul>
 
 {% if pagination.pages > 1 %}
 <div class="rgz-pagination">
+
     {% if pagination.has_prev %}
-        <a href="{{ url_for('rgz.index', page=pagination.prev_num) }}">« Назад</a>
+        <a href="{{ url_for('rgz.index', page=pagination.prev_num) }}">
+            « Назад
+        </a>
     {% endif %}
+
     {% if pagination.has_next %}
-        <a href="{{ url_for('rgz.index', page=pagination.next_num) }}">Вперед »</a>
+        <a href="{{ url_for('rgz.index', page=pagination.next_num) }}">
+            Вперед »
+        </a>
     {% endif %}
+
 </div>
 {% endif %}
+
 {% endblock %}

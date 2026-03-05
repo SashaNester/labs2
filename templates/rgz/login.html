@@ -1,18 +1,36 @@
 {% extends "rgzbase.html" %}
 {% block title %}Вход{% endblock %}
+
 {% block main %}
-<h1>Вход</h1>
+<h1 class="rgz-page-title">Вход</h1>
 
 <div class="rgz-form-container">
+
     <form method="post">
-        <label>Логин:
-            <input type="text" name="login">
-        </label>
-        <label>Пароль:
-            <input type="password" name="password">
-        </label>
-        <button type="submit">Войти</button>
+
+        <div class="rgz-form-group">
+            <label>Логин</label>
+            <input type="text" name="login" class="rgz-input-field">
+        </div>
+
+        <div class="rgz-form-group">
+            <label>Пароль</label>
+            <input type="password" name="password" class="rgz-input-field">
+        </div>
+
+        <button type="submit" class="rgz-btn">
+            Войти
+        </button>
+
     </form>
-    <a href="{{ url_for('rgz.register') }}">Регистрация</a>
+
+    <a href="/rgz/register" class="rgz-link">
+        Нет аккаунта?
+    </a>
+
+    <br>
+
+    <a href="/rgz/" class="rgz-link">К инициативам</a>
+
 </div>
 {% endblock %}

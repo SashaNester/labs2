@@ -1,24 +1,45 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>{% block title %}Инициативы{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Александра Нестерова</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='lab1/main.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
 </head>
+
 <body class="rgz-body">
+
 <header class="rgz-header">
-    <span class="rgz-student-info">ФИО: Нестерова А.А., Группа: ФБИ-32</span>
-    <nav>
-        {% if current_user.is_authenticated %}
-            <span>{{ current_user.login }}</span> |
-            <a href="{{ url_for('rgz.logout') }}">Выйти</a>
-        {% else %}
-            <a href="{{ url_for('rgz.login') }}">Вход</a> |
-            <a href="{{ url_for('rgz.register') }}">Регистрация</a>
-        {% endif %}
-    </nav>
+    <div class="rgz-header-inner">
+        <span class="rgz-student-info">
+            Нестерова Александра, ФБИ-32
+        </span>
+
+        <nav class="rgz-nav">
+            {% if current_user.is_authenticated %}
+                <span class="rgz-user">
+                    {{ current_user.login }}
+                </span>
+                <a href="/rgz/logout" class="rgz-link">Выйти</a>
+
+                {% if current_user.login == 'admin' %}
+                    <a href="/rgz/admin/users" class="rgz-link">
+                        Админ
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="/rgz/login" class="rgz-link">Вход</a>
+                <a href="/rgz/register" class="rgz-link">Регистрация</a>
+            {% endif %}
+        </nav>
+    </div>
 </header>
+
 <main class="rgz-container">
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul class="rgz-flash">
@@ -28,7 +49,10 @@
             </ul>
         {% endif %}
     {% endwith %}
+
     {% block main %}{% endblock %}
+
 </main>
+
 </body>
 </html>
